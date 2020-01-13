@@ -4,7 +4,7 @@
   "description": "Crystal Ly's Developer Profile Generator that generates pdfs from Github profiles.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
