@@ -19,4 +19,3 @@ fs.readFile('assets/html/index.html', (err, html) => {
         console.log('Server started on port ' + port);
     });
 });
-

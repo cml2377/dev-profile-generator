@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/cml2377/dev-profile-generator/issues"
   },
-  "homepage": "https://github.com/cml2377/dev-profile-generator#readme"
+  "homepage": "https://github.com/cml2377/dev-profile-generator#readme",
+  "dependencies": {
+    "electron-html-to": "^2.6.0"
+  }
 }
