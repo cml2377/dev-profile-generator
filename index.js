@@ -1,21 +1,36 @@
-const http = require('http');
-const fs = require('fs');
+var inquirer = require("inquirer");
+var fs = require("fs");
 
-const hostName = '127.0.0.1';
-const port = 3000;
+inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Github username you would like a profile generated for?"
+        },
+        {
+            type: "list",
+            message: "What is your favorite color?",
+            name: "colors",
+            choices: [
+                "green",
+                "blue",
+                "pink",
+                "red"
+            ]
+        }
+    ])
+    .then(function writeToFile(filename, data) {
 
-fs.readFile('assets/html/index.html', (err, html) => {
-    if (err) {
-        throw err;
-    }
-    const server = http.createServer((req, res) => {
-        res.statusCode = 200;
-        res.setHeader('Content-type', 'text/html');
-        res.write(html);
-        res.end();
+        var filename = response.name.toLowerCase().split(' ').join('') + ".pdf";
+
+        fs.writeFile(filename, JSON.stringify(data, null, '\t'), function (err) {
+
+            if (err) {
+                return console.log(err);
+            }
+
+            console.log("Success!");
+
+        });
     });
-
-    server.listen(port, hostName, () => {
-        console.log('Server started on port ' + port);
-    });
-});
