@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/cml2377/dev-profile-generator#readme",
   "dependencies": {
-    "electron-html-to": "^2.6.0",
     "inquirer": "^7.0.3"
   }
 }

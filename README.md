@@ -1,10 +1,13 @@
 # Developer Profile Generator
 
-*[Click here!](https://cml2377.github.io/dev-profile-generator/) - This is a link to my developer profile generator. It is a command-line application that dynamically generates a PDF profile from a GitHub username. The application will be invoked with the following command:
+This is my developer profile generator. It is a command-line application that dynamically generates a PDF profile from a GitHub username. The application will be invoked with the following command:
 
 ```sh
 node index.js
 ```
+
+This requires some node packages, be sure to use npm install after downloading this generator.
+
 ## Description
 
 The user will be prompted for a favorite color, which will be used as the background color for cards.
