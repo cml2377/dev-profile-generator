@@ -2,8 +2,6 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require('axios').default;
 const electronPDF = require('electron-pdf');
-const generateHTML = require('generateHTML.js');
-
 
 //======================================================================================================
 // These variables will change based on what username the user inputs. We pull this info from Github.
@@ -83,7 +81,7 @@ function githubQuery(queryUrl) {
             console.log(response.data.name);
             // console.log(response.data.public_repos);
 
-            let profileImg = response.data.avatar_url;
+            let profileImg = response.data.avatar_url + ".png";
             console.log(profileImg);
 
             let githubUsername = response.data.login;
