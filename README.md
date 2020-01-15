@@ -1,12 +1,21 @@
 # Developer Profile Generator
 
-This is my developer profile generator. It is a command-line application that dynamically generates a PDF profile from a GitHub username. The application will be invoked with the following command:
+This is my developer profile generator. It is a command-line application that dynamically generates an HTML and PDF profile from a GitHub username. The application will be invoked with the following command:
 
 ```sh
 node index.js
 ```
 
 This requires some node packages, be sure to use npm install after downloading this generator.
+
+# Instructions
+
+How To Use The App:
+1. Clone the repo from https://github.com/cml2377/dev-profile-generator
+2. Install the modules with: npm install
+3. Open index.js in Terminal, then input: node index.js
+4. Enter a GitHub profile name and favorite color 
+5. Your profile will generate an HTML and PDF
 
 ## Description
 

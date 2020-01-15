@@ -1,32 +1,32 @@
 const colors = {
-    green: {
-        wrapperBackground: "#E6E1C3",
-        headerBackground: "#C1C72C",
-        headerColor: "black",
-        photoBorderColor: "#black"
-    },
-    blue: {
-        wrapperBackground: "#5F64D3",
-        headerBackground: "#26175A",
-        headerColor: "white",
-        photoBorderColor: "#73448C"
-    },
-    pink: {
-        wrapperBackground: "#879CDF",
-        headerBackground: "#FF8374",
-        headerColor: "white",
-        photoBorderColor: "#FEE24C"
-    },
-    red: {
-        wrapperBackground: "#DE9967",
-        headerBackground: "#870603",
-        headerColor: "white",
-        photoBorderColor: "white"
-    }
+  green: {
+    wrapperBackground: "#E6E1C3",
+    headerBackground: "#C1C72C",
+    headerColor: "black",
+    photoBorderColor: "#black"
+  },
+  blue: {
+    wrapperBackground: "#5F64D3",
+    headerBackground: "#26175A",
+    headerColor: "white",
+    photoBorderColor: "#73448C"
+  },
+  pink: {
+    wrapperBackground: "#879CDF",
+    headerBackground: "#FF8374",
+    headerColor: "white",
+    photoBorderColor: "#FEE24C"
+  },
+  red: {
+    wrapperBackground: "#DE9967",
+    headerBackground: "#870603",
+    headerColor: "white",
+    photoBorderColor: "white"
+  }
 };
 
-function generateHTML(data) {
-    return `<!DOCTYPE html>
+function generateHTML(userInput, response, responseStars) {
+  return `<!DOCTYPE html>
   <html lang="en">
      <head>
         <meta charset="UTF-8" />
@@ -34,7 +34,7 @@ function generateHTML(data) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
         <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-        <title>Document</title>
+        <title>${userInput.username}</title>
         <style>
             @page {
               margin: 0;
@@ -170,5 +170,23 @@ function generateHTML(data) {
               zoom: .75; 
             } 
            }
-        </style>`
+        </style>
+        <body>
+        <div class="wrapper">
+        <div class="container">
+        <img class= "photo-header" src="${profileImg}" alt="profile-img">
+        <h1> Hi! My name is ${response.data.name}</h1>
+        <h2> I live in ${userCity}</h2>
+        <p>${userBio}</p>
+        <h2 class="links-nav">
+            <span><a href="https://www.google.com/maps/place/${userCity.split(" ")}">${userCity}</a></span>
+            <span><a href="${userGitHubProfileURL}">Github</a></span>
+            <span><a href="${userBlogURL}">Blog</a></span>
+        </h2>
+        </div>
+        </div>
+        </body>
+        </html>`
 }
+
+module.exports = generateHTML;
