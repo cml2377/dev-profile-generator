@@ -1,21 +1,22 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require('axios').default;
-const electronPDF = require('electron-pdf');
+const generateHTML = require('./generateHTML');
+const HTMLtoPDF = require('html-pdf');
 
 //======================================================================================================
 // These variables will change based on what username the user inputs. We pull this info from Github.
 //======================================================================================================
-let profileImg;
-let githubUsername;
-let userCity;
-let userGithubProfileURL;
-let userBlogURL;
-let userBio;
-let numberOfRepos;
-let numberofFollowers;
-let numberofGitStars;
-let numberofUsersFollowing;
+// const profileImg;
+// const githubUsername;
+// const userCity;
+// const userGithubProfileURL;
+// const userBlogURL;
+// const userBio;
+// const numberOfRepos;
+// const numberofFollowers;
+// const numberofGitStars;
+// const numberofUsersFollowing;
 
 //======================================================================
 // Inquirer prompts the user for Github username and favorite color.
@@ -52,7 +53,6 @@ inquirer
                 return console.log(err);
             }
 
-            // console.log("File Saved!");
             //============================================================================
             // If correct, we will do an axios request to find information on this user.
             // The queryUrl must include the correct Github username.
@@ -60,7 +60,7 @@ inquirer
             const queryUrl = "https://api.github.com/users/" + userInput.username;
             const queryStarUrl = "https://api.github.com/users/" + userInput.username + "/starred";
             // console.log(queryUrl);
-            console.log(queryStarUrl);
+            // console.log(queryStarUrl);
             //====================================================================
             // This is the function that performs the axios request.
             //====================================================================
@@ -106,11 +106,16 @@ function githubQuery(queryUrl) {
             console.log("Number of Followers: " + numberofFollowers);
 
             // THIS DOESN'T WORK-- Must do a second Axios call to grab number of starred repos. See below!
-            // let numberofGitStars = response.data.starred_url.length;
+            // const numberofGitStars = response.data.starred_url.length;
             // console.log("Number of Starred Projects: " + numberofGitStars);    59?! I have not starred that much, yet.
 
             let numberofUsersFollowing = response.data.following
             console.log("Number of Users Following: " + numberofUsersFollowing);
+
+            //=============================
+            //function to create HTML
+            //=============================
+            generateHTMLFunction(profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing);
 
         })
         .catch(function (error) {
@@ -143,19 +148,48 @@ function githubQueryStars(queryStarUrl) {
 
 //===================================================================
 // Next, we must put this information into an HTML and THEN a pdf.
-// I use electron-pdf node module.
+// I use html-pdf node module.
 //===================================================================
 
 //=================================================
 // First, a function that creates an HTML file.
 //=================================================
 
-// function generateHTML(data);
+// Needs info from these lets--> profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing
 
+function generateHTMLFunction(data) {
+    //creating HTML file
+    const filename = data.name.split(' ').join('') + ".html";
+
+    //This will create a JSON file with 
+    fs.writeFile(filename, JSON.stringify(profilePDF, null), function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Success!");
+        //taking the username from the user input data
+        let username = data.username;
+        console.log(username);
+        //taking the color from the user input data
+        let color = data.color;
+        console.log(color);
+        //pulling a function from from the generateHTML.js.
+        console.log(generate.colors);
+        //creates pdf file from html
+        makePDFFileFromHTML();
+    });
+}
 
 //======================================================
 // Then, a function that converts the HTML into a pdf.
-//========== COMMAND LINE USAGE OF ELECTRON ===================================
-// EXAMPLE FROM HTML FILE: electron-pdf index.html ~/Desktop/index.pdf
-// EXAMPLE FROM URL: electron-pdf https://fraserxu.me ~/Desktop/fraserxu.pdf
-//=============================================================================
+//======================================================
+// To generate a PDF from a HTML file
+
+function makePDFFileFromHTML() {
+    var options = { format: 'Letter' };
+
+    pdf.create(html, options).toFile(`./${username}.pdf`, function (err, res) {
+        if (err) return console.log(err);
+        console.log(res);
+    });
+};
