@@ -159,25 +159,27 @@ function githubQueryStars(queryStarUrl) {
 
 function generateHTMLFunction(data) {
     //creating HTML file
-    const filename = data.name.split(' ').join('') + ".html";
+    const filename = data.name + ".html";
 
     //This will create a JSON file with 
-    fs.writeFile(filename, JSON.stringify(profilePDF, null), function (err) {
+    fs.writeFile(filename, JSON.stringify(response.data, null), function (err) {
         if (err) {
             return console.log(err);
         }
-        console.log("Success!");
-        //taking the username from the user input data
-        let username = data.username;
-        console.log(username);
-        //taking the color from the user input data
-        let color = data.color;
-        console.log(color);
-        //pulling a function from from the generateHTML.js.
-        console.log(generate.colors);
-        //creates pdf file from html
-        makePDFFileFromHTML();
-    });
+        else {
+            console.log("Success!");
+            //taking the username from the user input data
+            let username = userInput.username;
+            console.log(username);
+            //taking the color from the user input data
+            let color = userInput.colors;
+            console.log(color);
+            //pulling a function from from the generateHTML.js.
+            console.log(generate.colors);
+            //creates pdf file from html
+            makePDFFileFromHTML();
+        };
+    })
 }
 
 //======================================================
