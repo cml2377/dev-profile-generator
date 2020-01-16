@@ -176,11 +176,18 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
         </style>
         <body>
         <div class="wrapper">
-        <div class="container">
         <img class= "photo-header" src="${profileImg}" alt="profile-img">
+        <div class="container">
         <h1> Hi! My name is ${response.data.name}</h1>
         <h2> I live in ${userCity}</h2>
-        <p>${userBio}</p>
+        <h2>${userBio}</h2>
+        <hr>
+        <h3> My GitHub Username is: ${userInput.username}.</h3>
+        <h3> I have starred ${responseStars} projects. </h3>
+        <h3> I have ${numberOfRepos} public repositories. </h3>
+        <h3> I have ${numberofFollowers} followers. </h3>
+        <h3> I follow ${numberofUsersFollowing} people. </h3>
+        <hr>
         <h2 class="links-nav">
             <span><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
             <span><a href="${userGithubProfileURL}">Github</a></span>
