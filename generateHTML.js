@@ -201,13 +201,13 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
             <h2>${userBio}</h2>
           </div>
         <div class="row">
-          <div class="card"> I have ${numberOfRepos} public repositories. </div>
-          <div class="card"> I have starred ${responseStars} projects. </div>
+          <div class="col"><div class="card"><h3>Public Repositories</h3><h4>${numberOfRepos}</h4></div> </div>
+          <div class="col"><div class="card"><h3>Starred Projects</h3><h4>${responseStars}</h4></div> </div>
         </div>
 
         <div class="row">
-          <div class="card"> I have ${numberofFollowers} followers. </div>
-          <div class="card"> I follow ${numberofUsersFollowing} people. </div>
+          <div class="col"><div class="card"><h3>Followers</h3><h4>${numberofFollowers}</h4></div> </div>
+          <div class="col"><div class="card"><h3>Following</h3><h4>${numberofUsersFollowing}</h4></div> </div>
         </div>
 
         </main>
