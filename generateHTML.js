@@ -99,8 +99,6 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
            -webkit-flex-wrap: wrap;
            display: flex;
            flex-wrap: wrap;
-           justify-content: center;
-           flex-wrap: wrap;
            background-color: ${colors[userInput.colors].headerBackground};
            color: ${colors[userInput.colors].headerColor};
            padding: 10px;
@@ -180,7 +178,7 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
         </style>
         <body>
           <div class="wrapper">
-            <div class="photo-header"><img src="${profileImg}" alt="profile-img">
+            <div class="photo-header"><img class="photo-header img" src="${profileImg}" alt="profile-img">
               <h1>Hi!</h1>
               <h1>My name is ${response.data.name}!</h1>
               <h2>Currently @ Unemployed</h2>
