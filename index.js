@@ -66,7 +66,7 @@ function devProfileGen() {
                 //====================================================================
                 githubQuery(queryUrl).then(function (response) {
                     githubQueryStars(queryStarUrl).then(function (responseStars) {
-                        var options = { format: 'Legal' };
+                        var options = { format: 'Letter' };
                         //=========================================================================================
                         // Next, we must put this information into an HTML and THEN a pdf.
                         // First, a function that creates an HTML file. This is pulled from the generateHTML.js.

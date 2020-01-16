@@ -94,7 +94,11 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
            position: relative;
            margin: 0 auto;
            margin-bottom: -50px;
-           display: flex;
+           display: -webkit-box
+           display: -webkit-flex
+           -webkit-flex-wrap: wrap
+           display: flex
+           flex-wrap: wrap
            justify-content: center;
            flex-wrap: wrap;
            background-color: ${colors[userInput.colors].headerBackground};
@@ -185,7 +189,8 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
               <span class="nav-link"><a href="${userGithubProfileURL}">Github</a></span>
               <span class="nav-link"><a href="${userBlogURL}">Blog</a></span>
               </div>
-            </div>
+          </div>
+          
         <div class="container">
         <main>
           <div class="row">
