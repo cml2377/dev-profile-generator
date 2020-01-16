@@ -94,11 +94,11 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
            position: relative;
            margin: 0 auto;
            margin-bottom: -50px;
-           display: -webkit-box
-           display: -webkit-flex
-           -webkit-flex-wrap: wrap
-           display: flex
-           flex-wrap: wrap
+           display: -webkit-box;
+           display: -webkit-flex;
+           -webkit-flex-wrap: wrap;
+           display: flex;
+           flex-wrap: wrap;
            justify-content: center;
            flex-wrap: wrap;
            background-color: ${colors[userInput.colors].headerBackground};
