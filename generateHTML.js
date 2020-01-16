@@ -1,3 +1,6 @@
+//userInput needs to be defined-- does this mean I have to copy and paste this into index.js?
+
+
 const colors = {
   green: {
     wrapperBackground: "#E6E1C3",
@@ -25,7 +28,7 @@ const colors = {
   }
 };
 
-function generateHTML(userInput, response, responseStars) {
+function generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing) {
   return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -52,7 +55,7 @@ function generateHTML(userInput, response, responseStars) {
            height: 100%;
            }
            .wrapper {
-           background-color: ${colors[data.color].wrapperBackground};
+           background-color: ${colors[userInput.colors].wrapperBackground};
            padding-top: 100px;
            }
            body {
@@ -94,8 +97,8 @@ function generateHTML(userInput, response, responseStars) {
            display: flex;
            justify-content: center;
            flex-wrap: wrap;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[userInput.colors].headerBackground};
+           color: ${colors[userInput.colors].headerColor};
            padding: 10px;
            width: 95%;
            border-radius: 6px;
@@ -106,7 +109,7 @@ function generateHTML(userInput, response, responseStars) {
            border-radius: 50%;
            object-fit: cover;
            margin-top: -75px;
-           border: 6px solid ${colors[data.color].photoBorderColor};
+           border: 6px solid ${colors[userInput.colors].photoBorderColor};
            box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
            }
            .photo-header h1, .photo-header h2 {
@@ -149,8 +152,8 @@ function generateHTML(userInput, response, responseStars) {
            .card {
              padding: 20px;
              border-radius: 6px;
-             background-color: ${colors[data.color].headerBackground};
-             color: ${colors[data.color].headerColor};
+             background-color: ${colors[userInput.colors].headerBackground};
+             color: ${colors[userInput.colors].headerColor};
              margin: 20px;
            }
            
@@ -179,8 +182,8 @@ function generateHTML(userInput, response, responseStars) {
         <h2> I live in ${userCity}</h2>
         <p>${userBio}</p>
         <h2 class="links-nav">
-            <span><a href="https://www.google.com/maps/place/${userCity.split(" ")}">${userCity}</a></span>
-            <span><a href="${userGitHubProfileURL}">Github</a></span>
+            <span><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
+            <span><a href="${userGithubProfileURL}">Github</a></span>
             <span><a href="${userBlogURL}">Blog</a></span>
         </h2>
         </div>

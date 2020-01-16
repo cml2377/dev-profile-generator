@@ -4,21 +4,19 @@ function devProfileGen() {
     const axios = require('axios').default;
     const generateHTML = require('./generateHTML');
     const HTMLtoPDF = require('html-pdf');
-    const util = require('util');
 
     //======================================================================================================
     // These variables will change based on what username the user inputs. We pull this info from Github.
     //======================================================================================================
-    const profileImg;
-    const githubUsername;
-    const userCity;
-    const userGithubProfileURL;
-    const userBlogURL;
-    const userBio;
-    const numberOfRepos;
-    const numberofFollowers;
-    const numberofGitStars;
-    const numberofUsersFollowing;
+    let profileImg;
+    let githubUsername;
+    let userCity;
+    let userGithubProfileURL;
+    let userBlogURL;
+    let userBio;
+    let numberOfRepos;
+    let numberofFollowers;
+    let numberofUsersFollowing;
 
     //======================================================================
     // Inquirer prompts the user for Github username and favorite color.
@@ -43,7 +41,7 @@ function devProfileGen() {
             }
         ])
         .then(function (userInput) {
-
+            // we create a json file with that information.
             var githubUsername = userInput.username.split(' ').join('') + ".json";
 
             fs.writeFile(githubUsername, JSON.stringify(userInput, null, '\t'), function (err) {
@@ -64,17 +62,24 @@ function devProfileGen() {
                 // console.log(queryUrl);
                 // console.log(queryStarUrl);
                 //====================================================================
-                // This is the function that performs the axios request.
+                // These are the functions that perform the axios requests.
                 //====================================================================
-                githubQuery(queryUrl);
-                githubQueryStars(queryStarUrl);
-                //===================================================================
-                // Next, we must put this information into an HTML and THEN a pdf.
-                // First, a function that creates an HTML file. This is pulled from the generateHTML.js.
-                //=========================================================================================
+                githubQuery(queryUrl).then(function (response) {
+                    githubQueryStars(queryStarUrl).then(function (responseStars) {
+                        var options = { format: 'Letter' };
+                        //=========================================================================================
+                        // Next, we must put this information into an HTML and THEN a pdf.
+                        // First, a function that creates an HTML file. This is pulled from the generateHTML.js.
+                        // Then, pdf create creates a pdf file from the HTML infomation generated.
+                        //=========================================================================================
+                        HTMLtoPDF.create(generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing), options).toFile(`./${userInput.username}.pdf`, function (err, res) {
+                            if (err) return console.log(err);
+                            console.log(res);
+                        });;
 
-                // Needs info from these lets--> profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing
-                generateHTML(data);
+                    })
+                });
+
             });
         });
 
@@ -83,49 +88,44 @@ function devProfileGen() {
     //====================================================
     function githubQuery(queryUrl) {
 
-        axios.get(queryUrl)
+        return axios.get(queryUrl)
             .then(function (response) {
                 // handle success
                 // console.log(response);
-                console.log(response.data.name);
+                // console.log(response.data.name);
                 // console.log(response.data.public_repos);
 
-                let profileImg = response.data.avatar_url + ".png";
-                console.log(profileImg);
+                profileImg = response.data.avatar_url + ".png";
+                // console.log(profileImg);
 
-                let githubUsername = response.data.login;
-                console.log("Username: " + githubUsername);
+                githubUsername = response.data.login;
+                // console.log("Username: " + githubUsername);
 
-                let userCity = response.data.location;
-                console.log("Lives in: " + userCity);
+                userCity = response.data.location;
+                // console.log("Lives in: " + userCity);
 
-                let userGithubProfileURL = response.data.html_url;
-                console.log("Github URL: " + userGithubProfileURL);
+                userGithubProfileURL = response.data.html_url;
+                // console.log("Github URL: " + userGithubProfileURL);
 
-                let userBlogURL = response.data.blog;
-                console.log("Blog: " + userBlogURL);
+                userBlogURL = response.data.blog;
+                // console.log("Blog: " + userBlogURL);
 
-                let userBio = response.data.bio;
-                console.log(userBio);
+                userBio = response.data.bio;
+                // console.log(userBio);
 
-                let numberOfRepos = response.data.public_repos;
-                console.log("Number of Public Repos: " + numberOfRepos);
+                numberOfRepos = response.data.public_repos;
+                // console.log("Number of Public Repos: " + numberOfRepos);
 
-                let numberofFollowers = response.data.followers;
-                console.log("Number of Followers: " + numberofFollowers);
+                numberofFollowers = response.data.followers;
+                // console.log("Number of Followers: " + numberofFollowers);
 
                 // THIS DOESN'T WORK-- Must do a second Axios call to grab number of starred repos. See below!
                 // const numberofGitStars = response.data.starred_url.length;
                 // console.log("Number of Starred Projects: " + numberofGitStars);    59?! I have not starred that much, yet.
 
-                let numberofUsersFollowing = response.data.following
-                console.log("Number of Users Following: " + numberofUsersFollowing);
-
-                //=============================
-                //function to create HTML
-                //=============================
-                generateHTMLFunction(data).then(function () { makePDFFileFromHTML(data); });
-
+                numberofUsersFollowing = response.data.following
+                // console.log("Number of Users Following: " + numberofUsersFollowing);
+                return response;
             })
             .catch(function (error) {
                 // handle error
@@ -141,10 +141,10 @@ function devProfileGen() {
     //============================================================
     function githubQueryStars(queryStarUrl) {
 
-        axios.get(queryStarUrl)
+        return axios.get(queryStarUrl)
             .then(function (responseStars) {
-                // handle success
-                console.log("Number of Starred Repos: " + responseStars.data.length);
+                // console.log("Number of Starred Repos: " + responseStars.data.length);
+                return responseStars.data.length;
             })
             .catch(function (error) {
                 // handle error
@@ -154,20 +154,6 @@ function devProfileGen() {
                 // always executed
             });
     }
-
-    //======================================================
-    // Then, a function that converts the HTML into a pdf.
-    //======================================================
-    // To generate a PDF from a HTML file
-
-    function makePDFFileFromHTML() {
-        var options = { format: 'Letter' };
-
-        pdf.create(html, options).toFile(`./${userInput.username}.pdf`, function (err, res) {
-            if (err) return console.log(err);
-            console.log(res);
-        });
-    };
 }
 
 devProfileGen();

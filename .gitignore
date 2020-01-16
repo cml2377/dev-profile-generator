@@ -1,4 +1,7 @@
 # Ignore folder named node_modules
-
-node_modules\
 node_modules
+
+# Ignore crystal's json file, html, and pdf
+cml2377.json
+cml2377.html
+cml2377.pdf
