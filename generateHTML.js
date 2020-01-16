@@ -175,24 +175,33 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
            }
         </style>
         <body>
-        <div class="wrapper">
-        <img class= "photo-header" src="${profileImg}" alt="profile-img">
+          <div class="wrapper">
+            <div class="photo-header"><img src="${profileImg}" alt="profile-img">
+              <h1>Hi!</h1>
+              <h1>My name is ${response.data.name}!</h1>
+              <h2>Currently @ Unemployed</h2>
+              <div class="links-nav">
+              <span class="nav-link"><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
+              <span class="nav-link"><a href="${userGithubProfileURL}">Github</a></span>
+              <span class="nav-link"><a href="${userBlogURL}">Blog</a></span>
+              </div>
+            </div>
         <div class="container">
-        <h1> Hi! My name is ${response.data.name}</h1>
-        <h2> I live in ${userCity}</h2>
-        <h2>${userBio}</h2>
-        <hr>
-        <h3> My GitHub Username is: ${userInput.username}.</h3>
-        <h3> I have starred ${responseStars} projects. </h3>
-        <h3> I have ${numberOfRepos} public repositories. </h3>
-        <h3> I have ${numberofFollowers} followers. </h3>
-        <h3> I follow ${numberofUsersFollowing} people. </h3>
-        <hr>
-        <h2 class="links-nav">
-            <span><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
-            <span><a href="${userGithubProfileURL}">Github</a></span>
-            <span><a href="${userBlogURL}">Blog</a></span>
-        </h2>
+        <main>
+          <div class="row">
+            <h2>${userBio}</h2>
+          </div>
+        <div class="row">
+          <div class="card"> I have ${numberOfRepos} public repositories. </div>
+          <div class="card"> I have starred ${responseStars} projects. </div>
+        </div>
+
+        <div class="row">
+          <div class="card"> I have ${numberofFollowers} followers. </div>
+          <div class="card"> I follow ${numberofUsersFollowing} people. </div>
+        </div>
+
+        </main>
         </div>
         </div>
         </body>
