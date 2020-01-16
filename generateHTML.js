@@ -34,7 +34,7 @@ const colors = {
   }
 };
 
-function generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing) {
+function generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing, userCompany) {
   return `<!DOCTYPE html>
   <html lang="en">
      <head>
@@ -182,36 +182,51 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
             } 
            }
         </style>
+        </head>
         <body>
           <div class="wrapper">
             <div class="photo-header"><img class="photo-header img" src="${profileImg}" alt="profile-img">
               <h1>Hi!</h1>
               <h1>My name is ${response.data.name}!</h1>
-              <h2>Currently @ Unemployed</h2>
+              <h2>Currently @ ${userCompany}</h2>
               <div class="links-nav">
-              <span class="nav-link"><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
-              <span class="nav-link"><a href="${userGithubProfileURL}">Github</a></span>
-              <span class="nav-link"><a href="${userBlogURL}">Blog</a></span>
+                <span class="nav-link"><a href="https://www.google.com/maps/place/${userCity}">${userCity}</a></span>
+                <span class="nav-link"><a href="${userGithubProfileURL}">Github</a></span>
+                <span class="nav-link"><a href="${userBlogURL}">Blog</a></span>
               </div>
           </div>
-          
-        <div class="container">
+        
         <main>
+        <div class="container">
           <div class="row">
             <h2>${userBio}</h2>
           </div>
-        <div class="row">
-          <div class="col"><div class="card"><h3>Public Repositories</h3><h4>${numberOfRepos}</h4></div> </div>
-          <div class="col"><div class="card"><h3>Starred Projects</h3><h4>${responseStars}</h4></div> </div>
-        </div>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <h3>Public Repositories</h3>
+                <h4>${numberOfRepos}</h4>
+              </div>
+              <div class="card">
+                <h3>Starred Projects</h3>
+                <h4>${responseStars}</h4>
+              </div>
+            </div>
+          </div>
 
-        <div class="row">
-          <div class="col"><div class="card"><h3>Followers</h3><h4>${numberofFollowers}</h4></div> </div>
-          <div class="col"><div class="card"><h3>Following</h3><h4>${numberofUsersFollowing}</h4></div> </div>
+          <div class="col">
+            <div class="card">
+              <h3>Followers</h3>
+              <h4>${numberofFollowers}</h4>
+            </div>
+            <div class="card">
+              <h3>Following</h3>
+              <h4>${numberofUsersFollowing}</h4>
+            </div>
+          </div>
+          </div>
         </div>
-
         </main>
-        </div>
         </div>
         </body>
         </html>`

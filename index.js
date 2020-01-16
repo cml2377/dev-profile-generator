@@ -17,6 +17,7 @@ function devProfileGen() {
     let numberOfRepos;
     let numberofFollowers;
     let numberofUsersFollowing;
+    let userCompany;
 
     //======================================================================
     // Inquirer prompts the user for Github username and favorite color.
@@ -73,7 +74,7 @@ function devProfileGen() {
                         // First, a function that creates an HTML file. This is pulled from the generateHTML.js.
                         // Then, HTMLtoPDF.create creates a pdf file from the HTML infomation generated.
                         //=========================================================================================
-                        HTMLtoPDF.create(generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing), options).toFile(`./${userInput.username}.pdf`, function (err, res) {
+                        HTMLtoPDF.create(generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing, userCompany), options).toFile(`./${userInput.username}.pdf`, function (err, res) {
                             if (err) return console.log(err);
                             console.log(res);
                         });;
@@ -119,6 +120,9 @@ function devProfileGen() {
 
                 numberofFollowers = response.data.followers;
                 // console.log("Number of Followers: " + numberofFollowers);
+
+                userCompany = response.data.company;
+                // console.log(userCompany);
 
                 // THIS DOESN'T WORK-- Must do a second Axios call to grab number of starred repos. See below!
                 // const numberofGitStars = response.data.starred_url.length;
