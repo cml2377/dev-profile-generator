@@ -6,7 +6,7 @@ const colors = {
     wrapperBackground: "#E6E1C3",
     headerBackground: "#C1C72C",
     headerColor: "black",
-    photoBorderColor: "#black"
+    photoBorderColor: "black"
   },
   blue: {
     wrapperBackground: "#5F64D3",
@@ -25,6 +25,12 @@ const colors = {
     headerBackground: "#870603",
     headerColor: "white",
     photoBorderColor: "white"
+  },
+  black: {
+    wrapperBackground: "#040407",
+    headerBackground: "#3E4349",
+    headerColor: "#DADFF7",
+    photoBorderColor: "#FF0022"
   }
 };
 

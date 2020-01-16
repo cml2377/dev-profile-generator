@@ -36,7 +36,8 @@ function devProfileGen() {
                     "green",
                     "blue",
                     "pink",
-                    "red"
+                    "red",
+                    "black"
                 ]
             }
         ])
@@ -70,7 +71,7 @@ function devProfileGen() {
                         //=========================================================================================
                         // Next, we must put this information into an HTML and THEN a pdf.
                         // First, a function that creates an HTML file. This is pulled from the generateHTML.js.
-                        // Then, pdf create creates a pdf file from the HTML infomation generated.
+                        // Then, HTMLtoPDF.create creates a pdf file from the HTML infomation generated.
                         //=========================================================================================
                         HTMLtoPDF.create(generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing), options).toFile(`./${userInput.username}.pdf`, function (err, res) {
                             if (err) return console.log(err);
