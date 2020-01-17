@@ -27,7 +27,7 @@
   "homepage": "https://github.com/cml2377/dev-profile-generator#readme",
   "dependencies": {
     "axios": "^0.19.1",
-    "html-pdf": "^2.2.0",
-    "inquirer": "^7.0.3"
+    "inquirer": "^7.0.3",
+    "puppeteer": "^2.0.0"
   }
 }

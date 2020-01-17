@@ -3,7 +3,7 @@ function devProfileGen() {
     const fs = require("fs");
     const axios = require('axios').default;
     const generateHTML = require('./generateHTML');
-    const HTMLtoPDF = require('html-pdf');
+    const puppeteer = require('puppeteer');
 
     //======================================================================================================
     // These variables will change based on what username the user inputs. We pull this info from Github.
@@ -68,16 +68,39 @@ function devProfileGen() {
                 //====================================================================
                 githubQuery(queryUrl).then(function (response) {
                     githubQueryStars(queryStarUrl).then(function (responseStars) {
-                        var options = { format: 'Letter' };
+                        var options = { format: 'tabloid' };
                         //=========================================================================================
                         // Next, we must put this information into an HTML and THEN a pdf.
                         // First, a function that creates an HTML file. This is pulled from the generateHTML.js.
-                        // Then, HTMLtoPDF.create creates a pdf file from the HTML infomation generated.
+                        // Then, puppeteer creates a pdf file from the HTML infomation generated.
                         //=========================================================================================
-                        HTMLtoPDF.create(generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing, userCompany), options).toFile(`./${userInput.username}.pdf`, function (err, res) {
-                            if (err) return console.log(err);
-                            console.log(res);
-                        });;
+                        var rendered = generateHTML(userInput, response, responseStars, profileImg, githubUsername, userCity, userGithubProfileURL, userBlogURL, userBio, numberOfRepos, numberofFollowers, numberofUsersFollowing, userCompany);
+
+                        fs.writeFile(userInput.username + '.html', rendered, (err) => {
+                            if (err) throw err;
+                            console.log('The file has been saved!');
+                        });
+
+                        //==================================================
+                        // Puppeteer converts HTML to pdf
+                        //==================================================
+                        (async () => {
+
+                            try {
+                                const browser = await puppeteer.launch();
+                                const page = await browser.newPage();
+                                await page.setContent(rendered);
+                                await page.emulateMedia('screen');
+                                await page.pdf({
+                                    path: `${userInput.username}.pdf`, format: 'A4', printBackground: true
+                                });
+                                console.log("HTML conversion done");
+                                await browser.close();
+                            }
+                            catch (errorPuppeteer) {
+                                console.log(errorPuppeteer);
+                            }
+                        })();
 
                     })
                 });
