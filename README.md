@@ -17,6 +17,10 @@ How To Use The App:
 4. Enter a GitHub profile name and favorite color 
 5. Your profile will generate an HTML and PDF
 
+## Demo
+
+![Demonstration of Developer Profile Generator as a gif](https://www.github.com/cml2377/dev-profile-generator/assets/images/demonstration.gif)
+
 ## Description
 
 The user will be prompted for a favorite color, which will be used as the background color for cards.
