@@ -188,9 +188,9 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
               <div class="row"><img src="${profileImg}" alt="profile-img">
               </div>
               <div class="container" style="padding-top:0; padding-bottom:0;">
-                <h2>Hi!</h2>
-                <h3>My name is ${response.data.name}!</h3>
-                <h5>Currently @ ${userCompany}</h5>
+                <h3>Hi!</h3>
+                <h4>My name is ${response.data.name}!</h4>
+                <h6>Currently @ ${userCompany}</h6>
               </div>
               <div class="links-nav">
                 <span class="nav-link"><a href="https://www.google.com/maps/place/${userCity}"><i class="fas fa-location-arrow"></i> ${userCity}</a></span>
@@ -203,22 +203,22 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
         
           <main class="container">
             <div class="col">
-                <h4>${userBio}</h4>
+                <h5>${userBio}</h5>
               </div>
 
               <div class="row">
 
                 <div class="col">
                   <div class="card">
-                    <h4>Public Repositories</h4>
-                    <h5>${numberOfRepos}</h5>
+                    <h5>Public Repositories</h5>
+                    <h6>${numberOfRepos}</h6>
                   </div>
                 </div>
 
                 <div class="col">
                   <div class="card">
-                    <h4>Number of Starred Projects</h4>
-                    <h5>${responseStars}</h5>
+                    <h5>Starred Projects</h5>
+                    <h6>${responseStars}</h6>
                   </div>
                 </div>
               </div>
@@ -226,14 +226,14 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
               <div class="row">
                 <div class="col">
                   <div class="card">
-                    <h4>Followers</h4>
-                    <h5>${numberofFollowers}</h5>
+                    <h5>Followers</h5>
+                    <h6>${numberofFollowers}</h6>
                   </div>
                 </div>
                 <div class="col">
                   <div class="card">
-                    <h4>Following</h4>
-                    <h5>${numberofUsersFollowing}</h5>
+                    <h5>Following</h5>
+                    <h6>${numberofUsersFollowing}</h6>
                   </div>
                 </div>
 

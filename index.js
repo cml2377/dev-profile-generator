@@ -78,7 +78,7 @@ function devProfileGen() {
 
                         fs.writeFile(userInput.username + '.html', rendered, (err) => {
                             if (err) throw err;
-                            console.log('The file has been saved!');
+                            console.log('Created HTML file');
                         });
 
                         //==================================================
@@ -94,7 +94,7 @@ function devProfileGen() {
                                 await page.pdf({
                                     path: `${userInput.username}.pdf`, format: 'A4', printBackground: true
                                 });
-                                console.log("HTML conversion done");
+                                console.log("HTML converted into pdf-- go check it out!");
                                 await browser.close();
                             }
                             catch (errorPuppeteer) {
