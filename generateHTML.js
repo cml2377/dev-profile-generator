@@ -27,10 +27,10 @@ const colors = {
     photoBorderColor: "#226F54"
   },
   black: {
-    wrapperBackground: "#040407",
-    headerBackground: "#3E4349",
-    headerColor: "#DADFF7",
-    photoBorderColor: "#FF0022"
+    wrapperBackground: "black",
+    headerBackground: "gray",
+    headerColor: "white",
+    photoBorderColor: "red"
   }
 };
 
