@@ -181,15 +181,16 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
          }
       </style>
         </head>
-        <body>
-          <div class="wrapper">
+        <body class="wrapper">
+        <div class="col">
+        <header>
             <div class="photo-header">
               <div class="row"><img src="${profileImg}" alt="profile-img">
               </div>
             <div class="container">
                 <h1>Hi!</h1>
-                <h1>My name is ${response.data.name}!</h1>
-                <h2>Currently @ ${userCompany}</h2>
+                <h2>My name is ${response.data.name}!</h2>
+                <h3>Currently @ ${userCompany}</h3>
               <div class="links-nav">
                 <span class="nav-link"><a href="https://www.google.com/maps/place/${userCity}"><i class="fas fa-location-arrow"></i>${userCity}</a></span>
                 <span class="nav-link"><a href="${userGithubProfileURL}"><i class="fab fa-github"></i>Github</a></span>
@@ -197,11 +198,11 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
               </div>
               </div>
           </div>
+          </header>
         
-          <main>
-            <div class="container">
-              <div class="row">
-                <h2>${userBio}</h2>
+          <main class="container">
+            <div class="col">
+                <h3>${userBio}</h3>
               </div>
 
               <div class="row">
@@ -211,18 +212,24 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
                     <h3>Public Repositories</h3>
                     <h4>${numberOfRepos}</h4>
                   </div>
+                </div>
 
+                <div class="col">
                   <div class="card">
                     <h3>Starred Projects</h3>
                     <h4>${responseStars}</h4>
                   </div>
                 </div>
+              </div>
 
+              <div class="row">
                 <div class="col">
                   <div class="card">
                     <h3>Followers</h3>
                     <h4>${numberofFollowers}</h4>
                   </div>
+                </div>
+                <div class="col">
                   <div class="card">
                     <h3>Following</h3>
                     <h4>${numberofUsersFollowing}</h4>
@@ -233,6 +240,7 @@ function generateHTML(userInput, response, responseStars, profileImg, githubUser
 
              </div> <!--closes container-->
             </main>
+            </div>
         </body>
     </html>`
 }
